@@ -1,4 +1,4 @@
-package com.yolkin.fromjava.coursera.week2
+package com.yolkin.fromjava.coursera.week2.basics
 
 fun sumAsFunction(list: List<Int>): Int {
     var result = 0

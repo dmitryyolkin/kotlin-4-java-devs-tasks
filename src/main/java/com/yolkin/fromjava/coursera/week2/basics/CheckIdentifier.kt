@@ -1,4 +1,4 @@
-package com.yolkin.fromjava.coursera.week2
+package com.yolkin.fromjava.coursera.week2.basics
 
 fun isValidIdentifier(s: String): Boolean {
     fun isValidCharacter(ch : Char) =
