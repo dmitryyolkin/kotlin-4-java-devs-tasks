@@ -14,7 +14,7 @@ fun TaxiPark.findFakeDrivers(): Set<Driver> =
  */
 fun TaxiPark.findFaithfulPassengers(minTrips: Int): Set<Passenger> =
         allPassengers
-                .filter {passenger -> trips.count{trip -> trip.passengers.any{ it == passenger}} >= minTrips}
+                .filter {passenger -> trips.count{passenger in it.passengers} >= minTrips}
                 .toSet()
 
 /*
@@ -22,7 +22,7 @@ fun TaxiPark.findFaithfulPassengers(minTrips: Int): Set<Passenger> =
  */
 fun TaxiPark.findFrequentPassengers(driver: Driver): Set<Passenger> =
         allPassengers
-                .filter {passenger -> trips.count{ it.driver == driver && it.passengers.any{ it == passenger}} > 1}
+                .filter {passenger -> trips.count{ it.driver == driver && passenger in it.passengers} > 1}
                 .toSet()
 
 /*
@@ -42,7 +42,10 @@ fun TaxiPark.findSmartPassengers(): Set<Passenger> =
  */
 fun TaxiPark.findTheMostFrequentTripDurationPeriod(): IntRange? {
     return trips
-            .groupBy {  IntRange((it.duration / 10) * 10, (it.duration / 10 + 1) * 10 - 1 )}
+            .groupBy {
+                val bucket = it.duration / 10
+                IntRange(bucket * 10, bucket * 10 + 9 )
+            }
             .maxBy { it.value.size }
             ?.key
 }
@@ -63,14 +66,13 @@ fun TaxiPark.checkParetoPrinciple(): Boolean {
                     { it },
                     { driver2TripsCost.get(it) ?: 0.0 }
             )
-            .entries
-            .sortedByDescending { it.value }
+            .values
+            .sortedByDescending { it }
 
     val top20DriversMaxIndex = (driversByCostList.size * .2).toInt()
-    var top20DriversSum = 0.0
-    for (i in 0 until top20DriversMaxIndex) {
-        top20DriversSum += driversByCostList.get(i).value
-    }
+    val top20DriversSum = driversByCostList
+            .take(top20DriversMaxIndex)
+            .sumByDouble { it }
 
     return top20DriversSum >= trips.sumByDouble { it.cost } * 0.8
 }
