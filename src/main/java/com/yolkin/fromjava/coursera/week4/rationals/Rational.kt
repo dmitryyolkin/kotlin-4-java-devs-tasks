@@ -2,20 +2,18 @@ package com.yolkin.fromjava.coursera.week4.rationals
 
 import java.math.BigInteger
 
-data class Rational(var numerator: BigInteger, var denominator: BigInteger) : Comparable<Rational> {
+class Rational(n: BigInteger, d: BigInteger) : Comparable<Rational> {
+    val numerator : BigInteger
+    val denominator : BigInteger
 
     init {
-        if (denominator == BigInteger.ZERO) {
+        if (d == BigInteger.ZERO) {
             throw IllegalArgumentException("denominator is zero")
         }
-        val gcd = numerator.gcd(denominator)
-        numerator /= gcd
-        denominator /= gcd
-
-        if (denominator < BigInteger.ZERO) {
-            numerator = -numerator
-            denominator = -denominator
-        }
+        val gcd = n.gcd(d)
+        val sign = d.signum().toBigInteger()
+        numerator = n / gcd * sign
+        denominator = d / gcd * sign
     }
 
     override fun toString(): String {
@@ -32,6 +30,25 @@ data class Rational(var numerator: BigInteger, var denominator: BigInteger) : Co
         val y = a * d - b * c
         return if (y > BigInteger.ZERO) 1 else if (y < BigInteger.ZERO) -1 else 0
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Rational
+
+        if (numerator != other.numerator) return false
+        if (denominator != other.denominator) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = numerator.hashCode()
+        result = 31 * result + denominator.hashCode()
+        return result
+    }
+
 }
 
 operator fun Rational.plus(other: Rational): Rational {
