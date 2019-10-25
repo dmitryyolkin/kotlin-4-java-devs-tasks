@@ -1,6 +1,6 @@
-package board
+package com.yolkin.fromjava.coursera.week4.board
 
-import board.Direction.*
+import com.yolkin.fromjava.coursera.week4.board.Direction.*
 import org.junit.Assert
 import org.junit.FixMethodOrder
 import org.junit.Test

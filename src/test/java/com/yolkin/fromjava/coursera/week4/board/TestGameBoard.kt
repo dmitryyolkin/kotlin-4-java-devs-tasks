@@ -1,4 +1,4 @@
-package board
+package com.yolkin.fromjava.coursera.week4.board
 
 import org.junit.Assert
 import org.junit.FixMethodOrder
