@@ -1,4 +1,4 @@
-package com.yolkin.fromjava.coursera.week4.board
+package com.yolkin.fromjava.coursera.week5.board
 
 class GameBoardImpl<T>(width: Int) : SquareBoardImpl(width), GameBoard<T> {
     private val values : MutableMap<Cell, T?> = mutableMapOf()

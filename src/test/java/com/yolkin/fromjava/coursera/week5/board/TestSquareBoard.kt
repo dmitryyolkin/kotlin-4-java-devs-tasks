@@ -1,6 +1,9 @@
-package com.yolkin.fromjava.coursera.week4.board
+package com.yolkin.fromjava.coursera.week5.games.board
 
-import com.yolkin.fromjava.coursera.week4.board.Direction.*
+import com.yolkin.fromjava.coursera.week5.board.Cell
+import com.yolkin.fromjava.coursera.week5.board.Direction
+import com.yolkin.fromjava.coursera.week5.board.Direction.*
+import com.yolkin.fromjava.coursera.week5.board.createSquareBoard
 import org.junit.Assert
 import org.junit.FixMethodOrder
 import org.junit.Test

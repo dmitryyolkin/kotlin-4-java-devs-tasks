@@ -1,7 +1,6 @@
-package com.yolkin.fromjava.coursera.week4.board
+package com.yolkin.fromjava.coursera.week5.board
 
-import com.yolkin.fromjava.coursera.week4.board.Direction.*
-import kotlin.math.abs
+import com.yolkin.fromjava.coursera.week5.board.Direction.*
 
 open class SquareBoardImpl(final override val width: Int) : SquareBoard {
     private val board: List<List<Cell>>

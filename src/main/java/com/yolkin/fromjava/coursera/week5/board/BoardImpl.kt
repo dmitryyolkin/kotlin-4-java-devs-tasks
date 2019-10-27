@@ -1,4 +1,4 @@
-package com.yolkin.fromjava.coursera.week4.board
+package com.yolkin.fromjava.coursera.week5.board
 
 fun createSquareBoard(width: Int): SquareBoard {
     return SquareBoardImpl(width)
